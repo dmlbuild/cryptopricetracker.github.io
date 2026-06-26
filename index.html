@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Tracking Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans min-h-screen">
+
+    <nav class="border-b border-slate-800 bg-slate-900/50 backdrop-blur px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div class="flex items-center gap-3">
+            <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center font-bold text-lg">₿</div>
+            <h1 class="text-xl font-bold tracking-tight">CryptoPulse <span class="text-indigo-400 text-sm font-normal">Dashboard</span></h1>
+        </div>
+        <div class="flex items-center gap-3 w-full sm:w-auto">
+            <input type="text" id="cryptoSearch" placeholder="Search coin..." class="w-full sm:w-64 px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:border-indigo-500 text-sm transition">
+            <button id="refreshBtn" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 rounded-lg text-sm font-semibold transition cursor-pointer">
+                Refresh
+            </button>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto p-4 md:p-6 space-y-6">
+        
+        <section id="topCoinsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="animate-pulse bg-slate-900 border border-slate-800 p-4 rounded-xl h-28"></div>
+            <div class="animate-pulse bg-slate-900 border border-slate-800 p-4 rounded-xl h-28"></div>
+            <div class="animate-pulse bg-slate-900 border border-slate-800 p-4 rounded-xl h-28"></div>
+            <div class="animate-pulse bg-slate-900 border border-slate-800 p-4 rounded-xl h-28"></div>
+        </section>
+
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            
+            <div class="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-xl p-5 flex flex-col justify-between">
+                <div class="flex justify-between items-center mb-4">
+                    <div>
+                        <h2 class="text-lg font-semibold" id="chartTitle">Bitcoin Performance</h2>
+                        <p class="text-xs text-slate-400">7-Day Price Trend Interval (USD)</p>
+                    </div>
+                    <span id="chartPrice" class="text-xl font-bold text-indigo-400">$0.00</span>
+                </div>
+                <div class="h-64 sm:h-80 w-full">
+                    <canvas id="trendChart"></canvas>
+                </div>
+            </div>
+
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 flex flex-col">
+                <h2 class="text-lg font-semibold mb-4">Market Cap Rankings</h2>
+                <div class="overflow-y-auto max-h-[340px] custom-scrollbar space-y-2 pr-1" id="cryptoTableBody">
+                    </div>
+            </div>
+
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
